@@ -18,7 +18,7 @@ public class Manager : MonoBehaviour
     //[SerializeField] private TextMeshProUGUI[] LeaderboardTxts;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI scoreText;
-
+    [SerializeField] private TextMeshProUGUI[] names;
 
 
 
@@ -113,19 +113,25 @@ public class Manager : MonoBehaviour
             else if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
+                //var userDoc;
                 foreach (var userDoc in (Dictionary<string, object>)snapshot.Value)
                 {
                     var userObject = ((Dictionary<string, object>)userDoc.Value);
-
-                    nameText.text = "" + userObject["username"];
+                    nameText.text = ((Dictionary<string, object>)userDoc.Value)["username"].ToString();
+                    //nameText.text = "" + userObject["username"];
                     scoreText.text = "" + userObject["score"];
 
                     //testTexts.Add = "" + userObject["username"] + ":" + userObject["score"];
                     //testText.text = "Hola";
 
                     Debug.Log("LEADERBOARD: " + userObject["username"] + " : " + userObject["score"]);
+                    for (int i = 0; i < ((Dictionary<string, object>)snapshot.Value).Count; i++)
+                    {
+                        names[i].text = ((Dictionary<string, object>)userDoc.Value)["username"].ToString();
+                    }
 
                 }
+
 
             }
         });
