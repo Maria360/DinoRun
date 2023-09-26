@@ -127,7 +127,8 @@ public class Manager : MonoBehaviour
                     Debug.Log("LEADERBOARD: " + userObject["username"] + " : " + userObject["score"]);
                     for (int i = 0; i < ((Dictionary<string, object>)snapshot.Value).Count; i++)
                     {
-                        names[i].text = ((Dictionary<string, object>)userDoc.Value)["username"].ToString();
+                        var keyValuePair = ((Dictionary<string, object>)snapshot.Value).ElementAt(i);
+                        names[i].text = "" + keyValuePair.Key[0];
                     }
 
                 }
