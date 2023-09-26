@@ -117,7 +117,7 @@ public class Manager : MonoBehaviour
                 foreach (var userDoc in (Dictionary<string, object>)snapshot.Value)
                 {
                     var userObject = ((Dictionary<string, object>)userDoc.Value);
-                    nameText.text = ((Dictionary<string, object>)userDoc.Value)["username"].ToString();
+                    //nameText.text = ((Dictionary<string, object>)userDoc.Value)["username"].ToString();
                     //nameText.text = "" + userObject["username"];
                     scoreText.text = "" + userObject["score"];
 
@@ -128,7 +128,8 @@ public class Manager : MonoBehaviour
                     for (int i = 0; i < ((Dictionary<string, object>)snapshot.Value).Count; i++)
                     {
                         var keyValuePair = ((Dictionary<string, object>)snapshot.Value).ElementAt(i);
-                        names[i].text = "" + keyValuePair.Key[0];
+                        var nameValuePair = ((Dictionary<string, object>)keyValuePair.Value);
+                        names[i].text = "" + nameValuePair["username"];
                     }
 
                 }
