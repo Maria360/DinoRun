@@ -19,7 +19,7 @@ public class Manager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI[] names;
-
+    [SerializeField] private TextMeshProUGUI[] scores;
 
 
     private int score;
@@ -128,8 +128,9 @@ public class Manager : MonoBehaviour
                     for (int i = 0; i < ((Dictionary<string, object>)snapshot.Value).Count; i++)
                     {
                         var keyValuePair = ((Dictionary<string, object>)snapshot.Value).ElementAt(i);
-                        var nameValuePair = ((Dictionary<string, object>)keyValuePair.Value);
-                        names[i].text = "" + nameValuePair["username"];
+                        var userValuePair = ((Dictionary<string, object>)keyValuePair.Value);
+                        names[i].text = "" + userValuePair["username"];
+                        scores[i].text = "" + userValuePair["score"];
                     }
 
                 }
