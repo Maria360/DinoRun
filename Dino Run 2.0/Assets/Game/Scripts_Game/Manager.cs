@@ -15,8 +15,11 @@ public class Manager : MonoBehaviour
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] private TMP_Text scoreTxt;
     [SerializeField] private float initialScrollSpeed;
-    [SerializeField] private TextMeshProUGUI[] leaderBoardTxt;
-    //[SerializeField] private List<TextMeshProUGUI> testTexts;
+    //[SerializeField] private TextMeshProUGUI[] LeaderboardTxts;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI scoreText;
+
+
 
 
     private int score;
@@ -113,6 +116,9 @@ public class Manager : MonoBehaviour
                 foreach (var userDoc in (Dictionary<string, object>)snapshot.Value)
                 {
                     var userObject = ((Dictionary<string, object>)userDoc.Value);
+
+                    nameText.text = "" + userObject["username"];
+                    scoreText.text = "" + userObject["score"];
 
                     //testTexts.Add = "" + userObject["username"] + ":" + userObject["score"];
                     //testText.text = "Hola";
