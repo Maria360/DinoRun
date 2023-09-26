@@ -75,9 +75,12 @@ public class ForgetPassword : MonoBehaviour
                     Debug.LogError("UpdatePasswordAsync encountered an error: " + task.Exception);
                     return;
                 }
-                status.text = "Password updated successfully";
+                //status.text = "Password updated successfully";
                 Debug.Log("Password updated successfully.");
+                FirebaseAuth.DefaultInstance.SignOut();
+                Debug.Log("Log Out");
                 SceneManager.LoadScene("Home");
+                //SceneManager.LoadScene("Home");
             });
         }
         else if (user == null)
