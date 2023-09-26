@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Firebase.Auth;
+using TMPro.EditorUtilities;
 public class ForgetPassword : MonoBehaviour
 {
     //Firebase.Auth.FirebaseAuth auth;
@@ -13,6 +14,8 @@ public class ForgetPassword : MonoBehaviour
     [SerializeField] TMP_InputField InputEmail;
     [SerializeField] TMP_InputField InputPassword;
     [SerializeField] GameObject panelRest;
+    [SerializeField] TextMeshProUGUI status;
+
 
     void Start()
     {
@@ -72,9 +75,9 @@ public class ForgetPassword : MonoBehaviour
                     Debug.LogError("UpdatePasswordAsync encountered an error: " + task.Exception);
                     return;
                 }
-
+                status.text = "Password updated successfully";
                 Debug.Log("Password updated successfully.");
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene("Home");
             });
         }
         else if (user == null)
